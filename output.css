@@ -1241,6 +1241,10 @@ video {
     margin-left: 12.5rem;
   }
 
+  .max-sm\:ml-56 {
+    margin-left: 14rem;
+  }
+
   .max-sm\:hidden {
     display: none;
   }
@@ -1283,6 +1287,10 @@ video {
 
   .max-sm\:w-full {
     width: 100%;
+  }
+
+  .max-sm\:gap-0 {
+    gap: 0px;
   }
 
   .max-sm\:p-2 {
