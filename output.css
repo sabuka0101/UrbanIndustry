@@ -1213,6 +1213,10 @@ video {
     margin-left: 2rem;
   }
 
+  .max-sm\:ml-5 {
+    margin-left: 1.25rem;
+  }
+
   .max-sm\:hidden {
     display: none;
   }
@@ -1352,5 +1356,9 @@ video {
   .max-sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .max-sm\:text-\[0\.7rem\] {
+    font-size: 0.7rem;
   }
 }
