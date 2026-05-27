@@ -642,6 +642,18 @@ video {
   margin-top: 12rem;
 }
 
+.mr-12 {
+  margin-right: 3rem;
+}
+
+.mr-16 {
+  margin-right: 4rem;
+}
+
+.ml-8 {
+  margin-left: 2rem;
+}
+
 .flex {
   display: flex;
 }
@@ -690,6 +702,10 @@ video {
 .w-max {
   width: -moz-max-content;
   width: max-content;
+}
+
+.w-\[16rem\] {
+  width: 16rem;
 }
 
 .resize-none {
@@ -1173,6 +1189,30 @@ video {
     margin-left: -0.01rem;
   }
 
+  .max-sm\:ml-32 {
+    margin-left: 8rem;
+  }
+
+  .max-sm\:ml-24 {
+    margin-left: 6rem;
+  }
+
+  .max-sm\:ml-20 {
+    margin-left: 5rem;
+  }
+
+  .max-sm\:ml-\[6rem\] {
+    margin-left: 6rem;
+  }
+
+  .max-sm\:ml-\[5\.5rem\] {
+    margin-left: 5.5rem;
+  }
+
+  .max-sm\:ml-8 {
+    margin-left: 2rem;
+  }
+
   .max-sm\:hidden {
     display: none;
   }
@@ -1183,6 +1223,34 @@ video {
 
   .max-sm\:w-\[20rem\] {
     width: 20rem;
+  }
+
+  .max-sm\:w-1 {
+    width: 0.25rem;
+  }
+
+  .max-sm\:w-10 {
+    width: 2.5rem;
+  }
+
+  .max-sm\:w-8 {
+    width: 2rem;
+  }
+
+  .max-sm\:w-4 {
+    width: 1rem;
+  }
+
+  .max-sm\:w-32 {
+    width: 8rem;
+  }
+
+  .max-sm\:w-64 {
+    width: 16rem;
+  }
+
+  .max-sm\:w-\[16rem\] {
+    width: 16rem;
   }
 
   .max-sm\:p-2 {
@@ -1264,5 +1332,25 @@ video {
   .max-sm\:text-5xl {
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .max-sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .max-sm\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .max-sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .max-sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
