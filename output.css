@@ -1143,6 +1143,10 @@ video {
     margin-right: 0.75rem;
   }
 
+  .max-sm\:mr-2 {
+    margin-right: 0.5rem;
+  }
+
   .max-sm\:flex {
     display: flex;
   }
@@ -1157,6 +1161,10 @@ video {
 
   .max-sm\:w-full {
     width: 100%;
+  }
+
+  .max-sm\:flex-col {
+    flex-direction: column;
   }
 
   .max-sm\:flex-wrap {
