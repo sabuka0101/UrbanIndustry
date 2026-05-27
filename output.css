@@ -1163,6 +1163,10 @@ video {
     width: 100%;
   }
 
+  .max-sm\:flex-none {
+    flex: none;
+  }
+
   .max-sm\:flex-col {
     flex-direction: column;
   }
