@@ -650,6 +650,22 @@ video {
   margin-right: 0.5rem;
 }
 
+.mt-\[-12rem\] {
+  margin-top: -12rem;
+}
+
+.mb-\[12rem\] {
+  margin-bottom: 12rem;
+}
+
+.mb-\[-12rem\] {
+  margin-bottom: -12rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .flex {
   display: flex;
 }
@@ -669,6 +685,14 @@ video {
 
 .h-\[20rem\] {
   height: 20rem;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-64 {
@@ -750,6 +774,10 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.5rem * var(--tw-space-x-reverse));
   margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.justify-self-center {
+  justify-self: center;
 }
 
 .rounded {
@@ -886,6 +914,22 @@ video {
   padding: 2rem;
 }
 
+.p-7 {
+  padding: 1.75rem;
+}
+
+.p-\[1\.7rem\] {
+  padding: 1.7rem;
+}
+
+.p-\[1\.74rem\] {
+  padding: 1.74rem;
+}
+
+.p-\[1\.75rem\] {
+  padding: 1.75rem;
+}
+
 .pb-12 {
   padding-bottom: 3rem;
 }
@@ -936,6 +980,78 @@ video {
 
 .pt-\[10rem\] {
   padding-top: 10rem;
+}
+
+.pt-32 {
+  padding-top: 8rem;
+}
+
+.pt-64 {
+  padding-top: 16rem;
+}
+
+.pt-48 {
+  padding-top: 12rem;
+}
+
+.pb-48 {
+  padding-bottom: 12rem;
+}
+
+.pb-44 {
+  padding-bottom: 11rem;
+}
+
+.pb-40 {
+  padding-bottom: 10rem;
+}
+
+.pb-\[11\.5rem\] {
+  padding-bottom: 11.5rem;
+}
+
+.pb-\[11\.75rem\] {
+  padding-bottom: 11.75rem;
+}
+
+.pb-\[11\.8rem\] {
+  padding-bottom: 11.8rem;
+}
+
+.pt-44 {
+  padding-top: 11rem;
+}
+
+.pb-\[12rem\] {
+  padding-bottom: 12rem;
+}
+
+.pb-\[13rem\] {
+  padding-bottom: 13rem;
+}
+
+.pb-\[12\.9rem\] {
+  padding-bottom: 12.9rem;
+}
+
+.pb-\[12\.99rem\] {
+  padding-bottom: 12.99rem;
+}
+
+.pb-52 {
+  padding-bottom: 13rem;
+}
+
+.pt-40 {
+  padding-top: 10rem;
+}
+
+.pb-56 {
+  padding-bottom: 14rem;
+}
+
+.pt-52 {
+  padding-top: 13rem;
 }
 
 .font-estedad {
@@ -1147,6 +1263,10 @@ video {
     margin-right: 0.5rem;
   }
 
+  .max-sm\:ml-8 {
+    margin-left: 2rem;
+  }
+
   .max-sm\:flex {
     display: flex;
   }
@@ -1177,6 +1297,26 @@ video {
 
   .max-sm\:pt-\[6rem\] {
     padding-top: 6rem;
+  }
+
+  .max-sm\:pb-64 {
+    padding-bottom: 16rem;
+  }
+
+  .max-sm\:pb-72 {
+    padding-bottom: 18rem;
+  }
+
+  .max-sm\:pb-\[20rem\] {
+    padding-bottom: 20rem;
+  }
+
+  .max-sm\:pb-\[22rem\] {
+    padding-bottom: 22rem;
+  }
+
+  .max-sm\:pb-\[23rem\] {
+    padding-bottom: 23rem;
   }
 
   .max-sm\:text-5xl {
