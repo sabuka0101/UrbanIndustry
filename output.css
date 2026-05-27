@@ -1139,6 +1139,14 @@ video {
     margin-right: 1rem;
   }
 
+  .max-sm\:mr-3 {
+    margin-right: 0.75rem;
+  }
+
+  .max-sm\:flex {
+    display: flex;
+  }
+
   .max-sm\:hidden {
     display: none;
   }
