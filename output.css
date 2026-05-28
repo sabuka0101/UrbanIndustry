@@ -954,6 +954,10 @@ video {
   padding-bottom: 8rem;
 }
 
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
 .font-estedad {
   font-family: Estedad;
 }
