@@ -950,6 +950,10 @@ video {
   padding-bottom: 6rem;
 }
 
+.pb-32 {
+  padding-bottom: 8rem;
+}
+
 .font-estedad {
   font-family: Estedad;
 }
