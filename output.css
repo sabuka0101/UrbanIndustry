@@ -566,6 +566,10 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -1241,6 +1245,10 @@ video {
 
   .max-sm\:pb-72 {
     padding-bottom: 18rem;
+  }
+
+  .max-sm\:pb-56 {
+    padding-bottom: 14rem;
   }
 
   .max-sm\:text-5xl {
