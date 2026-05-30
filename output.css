@@ -630,6 +630,14 @@ video {
   margin-top: -4px;
 }
 
+.ml-8 {
+  margin-left: 2rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
+}
+
 .flex {
   display: flex;
 }
@@ -684,6 +692,10 @@ video {
   width: 17.5rem;
 }
 
+.w-\[18rem\] {
+  width: 18rem;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -706,6 +718,14 @@ video {
 
 .gap-12 {
   gap: 3rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-14 {
+  gap: 3.5rem;
 }
 
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
@@ -897,6 +917,14 @@ video {
 
 .pt-\[10rem\] {
   padding-top: 10rem;
+}
+
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
+.pr-10 {
+  padding-right: 2.5rem;
 }
 
 .font-estedad {
