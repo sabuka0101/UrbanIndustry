@@ -558,6 +558,14 @@ video {
   position: fixed;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -956,6 +964,18 @@ video {
 
 .pr-10 {
   padding-right: 2.5rem;
+}
+
+.pb-\[10\.5rem\] {
+  padding-bottom: 10.5rem;
+}
+
+.pb-\[10\.4rem\] {
+  padding-bottom: 10.4rem;
+}
+
+.pb-\[10\.45rem\] {
+  padding-bottom: 10.45rem;
 }
 
 .font-estedad {
