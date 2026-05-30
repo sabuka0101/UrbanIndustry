@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+import fontFamily from "tailwindcss/defaultTheme";
 module.exports = {
-  content: ["./*.html", "./src/**/*.{html,js}"],
+  content: ["./*.html"],
   theme: {
     extend: {
       fontFamily: {
