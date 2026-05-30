@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
@@ -20,6 +21,6 @@ app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
 });
 
-app.listen(3000, () =>
-  console.log("Server is running on http://localhost:3000"),
+app.listen(PORT, () =>
+  console.log(`server is running on http://localhost:${PORT}`),
 );

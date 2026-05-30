@@ -668,6 +668,22 @@ video {
   width: max-content;
 }
 
+.w-72 {
+  width: 18rem;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.w-\[17rem\] {
+  width: 17rem;
+}
+
+.w-\[17\.5rem\] {
+  width: 17.5rem;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -924,6 +940,11 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
 }
 
 .font-medium {
