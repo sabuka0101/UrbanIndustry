@@ -1251,6 +1251,10 @@ video {
     padding-bottom: 14rem;
   }
 
+  .max-sm\:pb-36 {
+    padding-bottom: 9rem;
+  }
+
   .max-sm\:text-5xl {
     font-size: 3rem;
     line-height: 1;
