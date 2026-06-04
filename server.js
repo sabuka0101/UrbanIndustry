@@ -37,32 +37,6 @@ const productSchema = new mongoose.Schema({
   },
 });
 const Product = mongoose.model("product", productSchema);
-const products = [
-  {
-    category: "Sneakers",
-    productName: "Nike",
-    price: 30,
-    imgUrl: "assets/airforce.png",
-  },
-  {
-    productName: "Adidas",
-    category: "Sneakers",
-    price: 25,
-    imgUrl: "assets/airforce.png",
-  },
-  {
-    productName: "Puma",
-    category: "Sneakers",
-    price: 35,
-    imgUrl: "assets/airforce.png",
-  },
-  {
-    productName: "LumberJack",
-    category: "Sneakers",
-    price: 60,
-    imgUrl: "assets/airforce.png",
-  },
-];
 
 app.post("/products", async (req, res) => {
   try {
@@ -76,7 +50,33 @@ app.post("/products", async (req, res) => {
 });
 
 app.get("/products", (req, res) => {
-  res.send(products);
+  const products = [
+    {
+      category: "Sneakers",
+      productName: "Nike",
+      price: 30,
+      imgUrl: "assets/airforce.png",
+    },
+    {
+      productName: "Adidas",
+      category: "Sneakers",
+      price: 25,
+      imgUrl: "assets/airforce.png",
+    },
+    {
+      productName: "Puma",
+      category: "Sneakers",
+      price: 35,
+      imgUrl: "assets/airforce.png",
+    },
+    {
+      productName: "LumberJack",
+      category: "Sneakers",
+      price: 60,
+      imgUrl: "assets/airforce.png",
+    },
+  ];
+  res.json(products);
 });
 
 app.get("/", (req, res) => {

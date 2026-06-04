@@ -1,6 +1,6 @@
 getProducts();
 async function getProducts() {
-  const data = await fetch("http://localhost:3000/products");
+  const data = await fetch("/products");
   const products = await data.json();
   console.log(products);
   for (let i = 0; i < products.length; i++) {
