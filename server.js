@@ -41,7 +41,7 @@ const Product = mongoose.model("product", productSchema);
 app.post("/products", async (req, res) => {
   try {
     for (let i = 0; i < products.length; i++) {
-      const product = await Product.insertOne(products[i]);
+      const product = await Product.create(products[i]);
     }
     res.status(201).send("success");
   } catch (err) {
