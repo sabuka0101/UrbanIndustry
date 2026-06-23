@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Estedad:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <title>Authentication</title>
+  </head>
+  <body>
+    <header
+      class="flex justify-between border-b-0 shadow-sm shadow-gray-200 pb-4 fixed w-full z-50 bg-slate-50/90 backdrop-blur-sm"
+    >
+      <a class="text-2xl max-md:text-xl font-medium mt-4 ml-6" href="/">
+        <span
+          class="bg-gradient-to-r from-sky-500 to-sky-300 rounded-xl text-white p-1 pl-3 pr-3"
+          >U</span
+        >
+        Urban<span class="text-blue-400">Industry</span>
+      </a>
+      <ul class="flex space-x-6 mt-5 max-sm:hidden w-[20rem] ml-36">
+        <li>
+          <a
+            class="font-medium text-stone-800 text-lg hover:text-blue-400"
+            href="/"
+            >Shop</a
+          >
+        </li>
+        <li>
+          <a
+            class="font-medium text-stone-800 text-lg hover:text-blue-400"
+            href="/about"
+            >About</a
+          >
+        </li>
+      </ul>
+      <ul class="flex space-x-4 mt-4 mr-6">
+        <li>
+          <button class="text-xl hover:bg-blue-200 p-1 rounded-lg">
+            <i data-lucide="shopping-bag"></i>
+          </button>
+        </li>
+      </ul>
+    </header>
+    <div class="flex items-center justify-center h-[100vh]">
+      <div class="w-full max-w-lg shadow-2xl p-6 rounded-xl">
+        <!-- Tabs -->
+        <div class="flex border-b mb-6">
+          <button
+            id="loginTab"
+            class="flex-1 py-2 font-semibold text-sky-500 border-b-2 border-sky-500"
+          >
+            Login
+          </button>
+          <button
+            id="registerTab"
+            class="flex-1 py-2 font-semibold text-gray-400"
+          >
+            Register
+          </button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm">
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            id="loginEmail"
+            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+          />
+          <label class="block text-sm font-medium text-gray-700 mt-3"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="loginPassword"
+            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+          />
+          <button
+            id="loginBtn"
+            class="mt-6 w-full rounded-lg bg-gradient-to-r from-sky-500 to-sky-400 px-4 py-2 text-white font-semibold"
+          >
+            Login
+          </button>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerForm" class="hidden">
+          <label class="block text-sm font-medium text-gray-700">Name</label>
+          <input
+            type="text"
+            id="registerName"
+            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+          />
+          <label class="block text-sm font-medium text-gray-700 mt-3"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="registerEmail"
+            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+          />
+          <label class="block text-sm font-medium text-gray-700 mt-3"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="registerPassword"
+            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+          />
+          <button
+            id="registerBtn"
+            class="mt-6 w-full rounded-lg bg-gradient-to-r from-sky-500 to-sky-400 px-4 py-2 text-white font-semibold"
+          >
+            Register
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="./auth.js" type="module"></script>
+  </body>
+</html>

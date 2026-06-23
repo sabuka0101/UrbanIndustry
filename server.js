@@ -1,95 +1,23 @@
 import express from "express";
-import path from "path";
 import mongoose from "mongoose";
 import { fileURLToPath } from "url";
+import path from "path";
+import productRouter from "./Routes/productRoute.js";
+import fileRouter from "./Routes/filesRoute.js";
+import userRouter from "./Routes/userRoute.js";
+import "./db.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3000;
-const mongoURL = "mongodb://127.0.0.1:27017/products";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
-mongoose
-  .connect(mongoURL)
-  .then(() => console.log("success"))
-  .catch((err) => console.log(`fail ${err}`));
 
-const productSchema = new mongoose.Schema({
-  productName: {
-    type: String,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  imgUrl: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
-const Product = mongoose.model("product", productSchema);
+app.use("/api/products", productRouter);
 
-app.post("/products", async (req, res) => {
-  try {
-    for (let i = 0; i < products.length; i++) {
-      const product = await Product.create(products[i]);
-    }
-    res.status(201).send("success");
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+app.use("/api/users", userRouter);
 
-app.get("/products", (req, res) => {
-  const products = [
-    {
-      category: "Sneakers",
-      productName: "Nike",
-      price: 30,
-      imgUrl: "assets/airforce.png",
-    },
-    {
-      productName: "Adidas",
-      category: "Sneakers",
-      price: 25,
-      imgUrl: "assets/airforce.png",
-    },
-    {
-      productName: "Puma",
-      category: "Sneakers",
-      price: 35,
-      imgUrl: "assets/airforce.png",
-    },
-    {
-      productName: "LumberJack",
-      category: "Sneakers",
-      price: 60,
-      imgUrl: "assets/airforce.png",
-    },
-  ];
-  res.json(products);
-});
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "about.html"));
-});
-
-app.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname, "admin.html"));
-});
+app.use("/", fileRouter);
 
 app.listen(PORT, () =>
   console.log(`server is running on http://localhost:${PORT}`),

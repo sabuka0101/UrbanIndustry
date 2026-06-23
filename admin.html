@@ -60,6 +60,7 @@
       </div>
       <button
         class="bg-gradient-to-r from-sky-500 to-sky-300 pl-6 pr-6 rounded-xl text-white font-semibold h-10 mt-4"
+        id="newProductBtn"
       >
         + New Product
       </button>
@@ -84,35 +85,467 @@
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td class="px-6 py-4">
-              <div class="flex items-center gap-3">
-                <img
-                  src="assets/airforce.png"
-                  class="h-16 w-16 object-cover rounded-xl"
-                />
-                <div>
-                  <p class="text-gray-800 font-semibold">Nike</p>
-                  <p class="text-sm text-gray-500">Sneakers</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 font-estedad">$30.00</td>
-            <td class="px-6 py-4">2 in stock</td>
-            <td class="px-6 py-4">
-              <div class="flex justify-end gap-3">
-                <i data-lucide="pencil" class="size-5"></i>
-                <i data-lucide="trash-2" class="size-5 text-red-500"></i>
-              </div>
-            </td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
+    <div
+      class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 backdrop-blur-sm"
+      id="newProduct"
+    >
+      <div
+        class="w-full max-w-lg rounded-xl bg-white p-6 shadow-2xl transition-all duration-300 ease-out transform scale-95 opacity-0 max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden"
+        id="newProductBox"
+      >
+        <div class="flex items-center justify-between border-b pb-3">
+          <h3 class="text-xl font-semibold text-gray-900">Add New product</h3>
+          <button
+            class="text-gray-400 hover:text-gray-600"
+            id="productCloseBtn"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="mt-4 space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Name</label>
+            <input
+              type="text"
+              class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+              id="newProductName"
+            />
+            <label class="block text-sm font-medium text-gray-700"
+              >Description</label
+            >
+            <textarea
+              class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+              id="newProductDes"
+            ></textarea>
+            <div class="flex gap-4 w-full">
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700"
+                  >Price</label
+                >
+                <input
+                  type="number"
+                  class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+                  id="newProductPrice"
+                />
+              </div>
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700"
+                  >Stock</label
+                >
+                <input
+                  type="number"
+                  class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+                  id="newProductStock"
+                />
+              </div>
+            </div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Category</label
+            >
+            <input
+              type="text"
+              class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+              id="newProductCategory"
+            />
+            <label class="block text-sm font-medium text-gray-700">Image</label>
+            <label
+              class="mt-1 flex items-center gap-3 w-full rounded-lg border p-2 cursor-pointer hover:bg-gray-50 transition"
+            >
+              <span class="bg-sky-500 text-white text-sm px-3 py-1 rounded-lg"
+                >Choose File</span
+              >
+              <span class="text-gray-400 text-sm" id="fileName"
+                >No file chosen</span
+              >
+              <input
+                type="file"
+                class="hidden"
+                id="newProductImg"
+                accept="image/*"
+              />
+            </label>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Available Sizes</label
+              >
+
+              <div class="grid grid-cols-4 gap-3">
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="39"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">39</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="39.5"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">39.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="40"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">40</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="40.5"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">40.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="41"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">41</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="41.5"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">41.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="42"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">42</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="42.5"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">42.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="43"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">43</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="43.5"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">43.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="44"
+                    class="sr-only newProductSize"
+                  />
+                  <span class="text-sm font-medium">44</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="mt-6 flex justify-end rounded-lg bg-sky-500 px-4 py-2 text-white hover:bg-sky-600"
+          id="newProductSubmit"
+        >
+          Save Changes
+        </button>
+      </div>
+    </div>
+    <div
+      class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 backdrop-blur-sm"
+      id="editProduct"
+    >
+      <div
+        class="w-full max-w-lg rounded-xl bg-white p-6 shadow-2xl transition-all duration-300 ease-out transform scale-95 opacity-0 max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden"
+        id="editProductBox"
+      >
+        <div class="flex items-center justify-between border-b pb-3">
+          <h3 class="text-xl font-semibold text-gray-900">Edit product</h3>
+          <button class="text-gray-400 hover:text-gray-600" id="editCloseBtn">
+            ✕
+          </button>
+        </div>
+
+        <div class="mt-4 space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Name</label>
+            <input
+              type="text"
+              class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+              id="editProductName"
+            />
+            <label class="block text-sm font-medium text-gray-700"
+              >Description</label
+            >
+            <textarea
+              class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+              id="editProductDes"
+            ></textarea>
+            <div class="flex gap-4 w-full">
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700"
+                  >Price</label
+                >
+                <input
+                  type="number"
+                  class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+                  id="editProductPrice"
+                />
+              </div>
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700"
+                  >Stock</label
+                >
+                <input
+                  type="number"
+                  class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+                  id="editProductStock"
+                />
+              </div>
+            </div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Category</label
+            >
+            <input
+              type="text"
+              class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+              id="editProductCategory"
+            />
+            <label class="block text-sm font-medium text-gray-700">Image</label>
+            <label
+              class="mt-1 flex items-center gap-3 w-full rounded-lg border p-2 cursor-pointer hover:bg-gray-50 transition"
+            >
+              <span class="bg-sky-500 text-white text-sm px-3 py-1 rounded-lg"
+                >Choose File</span
+              >
+              <span class="text-gray-400 text-sm" id="editFileName"
+                >No file chosen</span
+              >
+              <input
+                type="file"
+                class="hidden"
+                id="editProductImg"
+                accept="image/*"
+              />
+            </label>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Available Sizes</label
+              >
+
+              <div class="grid grid-cols-4 gap-3">
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="39"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">39</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="39.5"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">39.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="40"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">40</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="40.5"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">40.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="41"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">41</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="41.5"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">41.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="42"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">42</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="42.5"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">42.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="43"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">43</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="43.5"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">43.5</span>
+                </label>
+
+                <label
+                  class="flex items-center justify-center border rounded-lg p-2 cursor-pointer transition hover:bg-gray-50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    name="sizes"
+                    value="44"
+                    class="sr-only editProductSize"
+                  />
+                  <span class="text-sm font-medium">44</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="mt-6 flex justify-end rounded-lg bg-sky-500 px-4 py-2 text-white hover:bg-sky-600"
+          id="editProductSubmit"
+        >
+          Save Changes
+        </button>
+      </div>
+    </div>
+    <script type="module" src="admin.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-      lucide.createIcons();
-    </script>
   </body>
 </html>
