@@ -1,5 +1,6 @@
 import express from "express";
 import { fileURLToPath } from "url";
+import { verifyAdmin } from "../Middlewares/tokenVerify.js";
 import path from "path";
 
 const router = express.Router();
@@ -13,7 +14,7 @@ router.get("/about", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "about.html"));
 });
 
-router.get("/admin", (req, res) => {
+router.get("/admin", verifyAdmin, (req, res) => {
   res.sendFile(path.join(__dirname, "..", "admin.html"));
 });
 

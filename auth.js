@@ -11,7 +11,6 @@ const registerEmail = document.querySelector("#registerEmail");
 const registerPassword = document.querySelector("#registerPassword");
 const registerEmailError = document.querySelector("#registerEmailError");
 const registerPasswordError = document.querySelector("#registerPasswordError");
-const inputs = document.querySelectorAll("input");
 
 loginTab.addEventListener("click", () => {
   loginForm.classList.remove("hidden");
@@ -33,67 +32,65 @@ registerTab.addEventListener("click", () => {
 
 document.querySelector("#loginBtn").addEventListener("click", async (event) => {
   event.preventDefault();
-  const res = await fetch("/api/users");
-  const users = await res.json();
-  const userExists = users.find((user) => user.email === loginEmail.value);
-  if (!userExists) {
-    return setError(loginEmailError, loginEmail, "Email is incorrect");
-  }
-  if (loginEmail.value === "" || loginEmail.value == null)
+
+  if (loginEmail.value === "")
     return setError(loginEmailError, loginEmail, "Email Field is empty");
   if (!loginEmail.value.includes("@"))
     return setError(loginEmailError, loginEmail, "Field should include @");
-  loginEmail.classList.remove("border-red-600");
-  loginEmailError.classList.add("hidden");
-  if (userExists.password != loginPassword.value) {
-    return setError(loginPasswordError, loginPassword, "Password is incorrect");
-  }
-  if (loginPassword.value === "" || loginPassword.value == null)
+  if (loginPassword.value === "")
     return setError(
       loginPasswordError,
       loginPassword,
       "Password Field is empty",
     );
-  loginPassword.classList.remove("border-red-600");
-  loginPasswordError.classList.add("hidden");
-  console.log("log in success");
 
-  loginUser();
+  clearError(loginEmailError, loginEmail);
+  clearError(loginPasswordError, loginPassword);
+
+  await loginUser();
 });
 
 async function loginUser() {
-  const res = await fetch("/api/users/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      email: loginEmail.value,
-      password: loginPassword.value,
-    }),
-  });
-  const data = await res.json();
-  if (!res.ok) return alert(data.message);
+  try {
+    const res = await fetch("/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: loginEmail.value,
+        password: loginPassword.value,
+      }),
+    });
 
-  // localStorage.setItem("token", data.accessToken);
-  // window.location.href = data.role === "admin" ? "/admin" : "/";
+    const data = await res.json();
+
+    if (res.status === 401) {
+      if (data.message === "Email is incorrect")
+        return setError(loginEmailError, loginEmail, data.message);
+      if (data.message === "Password is incorrect")
+        return setError(loginPasswordError, loginPassword, data.message);
+    }
+
+    if (!res.ok)
+      return setError(
+        loginEmailError,
+        loginEmail,
+        data.message || "Something went wrong",
+      );
+
+    localStorage.setItem("token", data.token);
+    window.location.href = data.role === "admin" ? "/admin" : "/";
+  } catch (err) {
+    console.error("Login failed:", err);
+    setError(loginEmailError, loginEmail, "Something went wrong. Try again.");
+  }
 }
+
 document
   .querySelector("#registerBtn")
   .addEventListener("click", async (event) => {
     event.preventDefault();
-    const res = await fetch("/api/users");
-    const users = await res.json();
-    const emailExists = users.find(
-      (user) => user.email === registerEmail.value,
-    );
-    if (emailExists) {
-      return setError(
-        registerEmailError,
-        registerEmail,
-        "This email already exists",
-      );
-    }
 
-    if (registerEmail.value === "" || registerEmail.value == null)
+    if (registerEmail.value === "")
       return setError(
         registerEmailError,
         registerEmail,
@@ -105,13 +102,17 @@ document
         registerEmail,
         "Field should include @",
       );
-    registerEmail.classList.remove("border-red-600");
-    registerEmailError.classList.add("hidden");
-    if (registerPassword.value === "" || registerPassword.value == null)
+    if (registerPassword.value === "")
       return setError(
         registerPasswordError,
         registerPassword,
         "Password Field is empty",
+      );
+    if (registerPassword.value.length < 8)
+      return setError(
+        registerPasswordError,
+        registerPassword,
+        "Password must be at least 8 characters",
       );
     if (registerPassword.value === "password")
       return setError(
@@ -119,9 +120,11 @@ document
         registerPassword,
         "Password can't be 'password'",
       );
-    registerPassword.classList.remove("border-red-600");
-    registerPasswordError.classList.add("hidden");
-    registerUser();
+
+    clearError(registerEmailError, registerEmail);
+    clearError(registerPasswordError, registerPassword);
+
+    await registerUser();
   });
 
 async function registerUser() {
@@ -137,15 +140,26 @@ async function registerUser() {
     });
 
     const data = await res.json();
-    console.log(data);
 
-    if (!res.ok) return alert(data.message);
+    if (res.status === 400 && data.message === "Email already exists")
+      return setError(registerEmailError, registerEmail, data.message);
+
+    if (!res.ok)
+      return setError(
+        registerEmailError,
+        registerEmail,
+        data.message || "Something went wrong",
+      );
 
     alert("Registered! Please log in.");
     loginTab.click();
   } catch (err) {
-    console.error("Fetch failed:", err);
-    alert("Something went wrong. Check the console.");
+    console.error("Register failed:", err);
+    setError(
+      registerEmailError,
+      registerEmail,
+      "Something went wrong. Try again.",
+    );
   }
 }
 
@@ -153,4 +167,9 @@ function setError(errorMessage, inputField, message) {
   errorMessage.innerText = message;
   errorMessage.classList.remove("hidden");
   inputField.classList.add("border-red-600");
+}
+
+function clearError(errorMessage, inputField) {
+  errorMessage.classList.add("hidden");
+  inputField.classList.remove("border-red-600");
 }

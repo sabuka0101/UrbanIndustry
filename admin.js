@@ -1,3 +1,25 @@
+async function verifyAdmin() {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    window.location.href = "/auth";
+    return;
+  }
+
+  const res = await fetch("/admin/dashboard", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    localStorage.removeItem("token");
+    window.location.href = "/auth";
+  }
+}
+
+await verifyAdmin();
+
 const body = document.body;
 const editCloseBtn = document.querySelector("#editCloseBtn");
 const editProduct = document.querySelector("#editProduct");
