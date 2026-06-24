@@ -6,10 +6,12 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const users = await User.find();
-  res.send(users);
+  res.json(users);
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {});
+
+router.post("/register", async (req, res) => {
   try {
     const user = new User(req.body);
     await user.save();

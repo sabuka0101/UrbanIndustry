@@ -48,12 +48,15 @@
           <button class="text-xl hover:bg-blue-200 p-1 rounded-lg">
             <i data-lucide="shopping-bag"></i>
           </button>
+          <a href="/auth"
+            ><button class="text-xl hover:bg-blue-200 p-1 rounded-lg">
+              <i data-lucide="user"></i></button
+          ></a>
         </li>
       </ul>
     </header>
     <div class="flex items-center justify-center h-[100vh]">
       <div class="w-full max-w-lg shadow-2xl p-6 rounded-xl">
-        <!-- Tabs -->
         <div class="flex border-b mb-6">
           <button
             id="loginTab"
@@ -69,22 +72,31 @@
           </button>
         </div>
 
-        <!-- Login Form -->
         <div id="loginForm">
           <label class="block text-sm font-medium text-gray-700">Email</label>
           <input
             type="email"
             id="loginEmail"
-            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+            class="mt-1 w-full rounded-lg border-2 p-2 focus:outline-sky-500"
           />
+          <p
+            class="hidden text-red-600 font-spaceGrotesk font-semibold"
+            id="loginEmailError"
+          ></p>
           <label class="block text-sm font-medium text-gray-700 mt-3"
             >Password</label
           >
           <input
             type="password"
             id="loginPassword"
-            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+            class="mt-1 w-full rounded-lg border-2 p-2 focus:outline-sky-500"
           />
+          <p
+            class="hidden text-red-600 font-spaceGrotesk font-semibold"
+            id="loginPasswordError"
+          >
+            Error
+          </p>
           <button
             id="loginBtn"
             class="mt-6 w-full rounded-lg bg-gradient-to-r from-sky-500 to-sky-400 px-4 py-2 text-white font-semibold"
@@ -93,13 +105,12 @@
           </button>
         </div>
 
-        <!-- Register Form -->
         <div id="registerForm" class="hidden">
           <label class="block text-sm font-medium text-gray-700">Name</label>
           <input
             type="text"
             id="registerName"
-            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+            class="mt-1 w-full rounded-lg border-2 p-2 focus:outline-sky-500"
           />
           <label class="block text-sm font-medium text-gray-700 mt-3"
             >Email</label
@@ -107,16 +118,24 @@
           <input
             type="email"
             id="registerEmail"
-            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+            class="mt-1 w-full rounded-lg border-2 p-2 focus:outline-sky-500"
           />
+          <p
+            class="hidden text-red-600 font-spaceGrotesk font-semibold"
+            id="registerEmailError"
+          ></p>
           <label class="block text-sm font-medium text-gray-700 mt-3"
             >Password</label
           >
           <input
             type="password"
             id="registerPassword"
-            class="mt-1 w-full rounded-lg border p-2 focus:outline-sky-500"
+            class="mt-1 w-full rounded-lg border-2 p-2 focus:outline-sky-500"
           />
+          <p
+            class="hidden text-red-600 font-spaceGrotesk font-semibold"
+            id="registerPasswordError"
+          ></p>
           <button
             id="registerBtn"
             class="mt-6 w-full rounded-lg bg-gradient-to-r from-sky-500 to-sky-400 px-4 py-2 text-white font-semibold"
