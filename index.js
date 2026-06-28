@@ -2,7 +2,6 @@ getProducts();
 async function getProducts() {
   const data = await fetch("/api/products");
   const products = await data.json();
-  console.log(products);
   for (let i = 0; i < products.length; i++) {
     renderProducts(products[i]);
   }
@@ -38,12 +37,9 @@ function renderProducts(product) {
   const cardDivBtn = document.createElement("button");
   cardDivBtn.className =
     "text-white bg-gradient-to-r from-sky-500 to-sky-300 rounded-xl pr-4 pl-4 text-sm font-semibold";
-  cardDivBtn.textContent = "View";
-  cardDivBtn.addEventListener("click", async () => {
-    const id = card.dataset.id;
-    const res = await fetch(`/api/products/${id}`);
-    const product = await res.json();
-    console.log(product);
+  cardDivBtn.textContent = "Add";
+  cardDivBtn.addEventListener("click", () => {
+    addProductCart(card);
   });
   cardDiv.appendChild(cardDivBtn);
   cards.appendChild(card);
@@ -52,3 +48,20 @@ function renderProducts(product) {
 document.querySelector("#shopBtn").addEventListener("click", () => {
   document.querySelector("#cards").scrollIntoView({ behavior: "smooth" });
 });
+
+async function addProductCart(card) {
+  const id = card.dataset.id;
+  try {
+    const res = await fetch("/api/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ productId: id, quantity: 1 }),
+    });
+    const data = await res.json();
+  } catch (err) {
+    console.log(err.message);
+  }
+}

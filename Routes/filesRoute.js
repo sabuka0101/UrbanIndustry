@@ -21,5 +21,8 @@ router.get("/admin", (req, res) => {
 router.get("/auth", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "auth.html"));
 });
+router.get("/cart", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "cart.html"));
+});
 
 export default router;

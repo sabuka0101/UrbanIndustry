@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Estedad:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <title>Cart – Urban Industry</title>
+  </head>
+  <body class="bg-slate-50 min-h-screen">
+    <header
+      class="flex justify-between border-b-0 shadow-sm shadow-gray-200 pb-4 fixed w-full z-50 bg-slate-50/90 backdrop-blur-sm"
+    >
+      <a class="text-2xl max-md:text-xl font-medium mt-4 ml-6" href="/">
+        <span
+          class="bg-gradient-to-r from-sky-500 to-sky-300 rounded-xl text-white p-1 pl-3 pr-3"
+          >U</span
+        >
+        Urban<span class="text-blue-400">Industry</span>
+      </a>
+      <ul class="flex space-x-6 mt-5 max-sm:hidden w-[20rem] ml-36">
+        <li>
+          <a
+            class="font-medium text-stone-800 text-lg hover:text-blue-400"
+            href="/"
+            >Shop</a
+          >
+        </li>
+        <li>
+          <a
+            class="font-medium text-stone-800 text-lg hover:text-blue-400"
+            href="/about"
+            >About</a
+          >
+        </li>
+      </ul>
+      <ul class="flex space-x-4 mt-4 mr-6">
+        <li>
+          <a href="/cart"
+            ><button class="text-xl hover:bg-blue-200 p-1 rounded-lg">
+              <i data-lucide="shopping-bag"></i></button
+          ></a>
+          <a href="/auth"
+            ><button class="text-xl hover:bg-blue-200 p-1 rounded-lg">
+              <i data-lucide="user"></i></button
+          ></a>
+        </li>
+      </ul>
+    </header>
+
+    <main class="pt-28 px-8 pb-20 max-w-6xl mx-auto max-sm:px-4">
+      <h1 class="text-4xl font-spaceGrotesk font-semibold text-gray-800 mb-2">
+        Your Cart
+      </h1>
+      <p class="text-gray-500 mb-10">Review your items before checkout.</p>
+
+      <div class="flex gap-8 max-lg:flex-col">
+        <div class="flex-1 flex flex-col gap-4" id="cartItems">
+          <div
+            id="emptyState"
+            class="hidden flex-col items-center justify-center py-24 text-center"
+          >
+            <i
+              data-lucide="shopping-bag"
+              class="size-16 text-gray-300 mb-4"
+            ></i>
+            <p class="text-gray-500 text-lg font-medium">Your cart is empty.</p>
+            <a href="/">
+              <button
+                class="mt-6 bg-gradient-to-r from-sky-500 to-sky-300 text-white px-6 py-3 rounded-xl font-semibold"
+              >
+                Browse Collection
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <div class="w-80 max-lg:w-full" id="summaryBox">
+          <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 sticky top-28"
+          >
+            <h2
+              class="text-xl font-spaceGrotesk font-semibold text-gray-800 mb-6"
+            >
+              Order Summary
+            </h2>
+
+            <div class="flex justify-between text-gray-600 mb-3">
+              <span>Subtotal</span>
+              <span id="subtotal">$0.00</span>
+            </div>
+            <div class="flex justify-between text-gray-600 mb-3">
+              <span>Shipping</span>
+              <span class="text-green-500 font-medium">Free</span>
+            </div>
+            <div class="border-t border-gray-100 my-4"></div>
+            <div
+              class="flex justify-between text-gray-800 font-semibold text-lg mb-6"
+            >
+              <span>Total</span>
+              <span id="total">$0.00</span>
+            </div>
+
+            <button
+              class="w-full bg-gradient-to-r from-sky-500 to-sky-300 text-white py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+            >
+              Checkout
+            </button>
+            <a href="/">
+              <button
+                class="w-full mt-3 border border-gray-200 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-colors"
+              >
+                Continue Shopping
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-t border-gray-300 p-8 flex justify-center">
+      <p class="text-gray-600 font-semibold max-sm:text-[0.7rem]">
+        © 2026 Urban Industry. Walk different.
+      </p>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="cart.js"></script>
+  </body>
+</html>

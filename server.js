@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import productRouter from "./Routes/productRoute.js";
 import fileRouter from "./Routes/filesRoute.js";
 import userRouter from "./Routes/userRoute.js";
+import cartRouter from "./Routes/cartRoute.js";
 import "./db.js";
 
 const app = express();
@@ -18,6 +19,8 @@ dotenv.config();
 app.use("/api/products", productRouter);
 
 app.use("/api/users", userRouter);
+
+app.use("/api/cart", cartRouter);
 
 app.use("/", fileRouter);
 
