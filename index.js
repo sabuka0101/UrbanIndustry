@@ -48,3 +48,7 @@ function renderProducts(product) {
   cardDiv.appendChild(cardDivBtn);
   cards.appendChild(card);
 }
+
+document.querySelector("#shopBtn").addEventListener("click", () => {
+  document.querySelector("#cards").scrollIntoView({ behavior: "smooth" });
+});

@@ -6,18 +6,23 @@ async function verifyAdmin() {
     return;
   }
 
-  const res = await fetch("/admin/dashboard", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
 
-  if (!res.ok) {
+    if (payload.exp * 1000 < Date.now()) {
+      localStorage.removeItem("token");
+      window.location.href = "/auth";
+      return;
+    }
+
+    if (payload.role !== "admin") {
+      window.location.href = "/auth";
+    }
+  } catch (err) {
     localStorage.removeItem("token");
     window.location.href = "/auth";
   }
 }
-
 await verifyAdmin();
 
 const body = document.body;
@@ -44,7 +49,32 @@ const newProductCategory = document.querySelector("#newProductCategory");
 const newProductSize = document.querySelectorAll(".newProductSize");
 const newProductImg = document.querySelector("#newProductImg");
 const newProductSubmit = document.querySelector("#newProductSubmit");
-const tbody = document.querySelector("tbody");
+const tbody = document.querySelector("#productsTable tbody");
+const usersTbody = document.querySelector("#usersTbody");
+const productsTabBtn = document.querySelector("#productsTabBtn");
+const usersTabBtn = document.querySelector("#usersTabBtn");
+const productsTable = document.querySelector("#productsTable");
+const usersTable = document.querySelector("#usersTable");
+
+productsTabBtn.addEventListener("click", () => {
+  productsTable.classList.remove("hidden");
+  usersTable.classList.add("hidden");
+  newProductBtn.classList.remove("hidden");
+  productsTabBtn.classList.add("bg-sky-500", "text-white");
+  productsTabBtn.classList.remove("text-gray-600", "hover:bg-gray-100");
+  usersTabBtn.classList.remove("bg-sky-500", "text-white");
+  usersTabBtn.classList.add("text-gray-600", "hover:bg-gray-100");
+});
+
+usersTabBtn.addEventListener("click", () => {
+  usersTable.classList.remove("hidden");
+  productsTable.classList.add("hidden");
+  newProductBtn.classList.add("hidden");
+  usersTabBtn.classList.add("bg-sky-500", "text-white");
+  usersTabBtn.classList.remove("text-gray-600", "hover:bg-gray-100");
+  productsTabBtn.classList.remove("bg-sky-500", "text-white");
+  productsTabBtn.classList.add("text-gray-600", "hover:bg-gray-100");
+});
 
 getProducts();
 async function getProducts() {
@@ -204,7 +234,10 @@ function editProducts() {
     try {
       const res = await fetch(`/api/products/${currentEditId}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify(editproductData),
       });
       const data = await res.json();
@@ -226,6 +259,7 @@ async function deleteProducts(e) {
   try {
     const res = await fetch(`/api/products/${currentDeleteId}`, {
       method: "DELETE",
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
     const data = await res.json();
     window.location.reload();
@@ -258,7 +292,10 @@ function createProducts() {
     try {
       const res = await fetch("/api/products", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify(productData),
       });
       const data = await res.json();
@@ -274,5 +311,101 @@ createProducts();
 
 productCloseBtn.addEventListener("click", closeProduct);
 newProductBtn.addEventListener("click", openProduct);
-
 editCloseBtn.addEventListener("click", closeEdit);
+
+async function getUsers() {
+  const res = await fetch("/api/users", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  const users = await res.json();
+  users.forEach((user) => addUserRow(user));
+}
+
+function addUserRow(user) {
+  const tr = document.createElement("tr");
+  tr.className = "border-b border-gray-100";
+
+  const tdName = document.createElement("td");
+  tdName.className = "px-6 py-4 text-gray-800 font-medium";
+  tdName.textContent = user.name;
+
+  const tdEmail = document.createElement("td");
+  tdEmail.className = "px-6 py-4 text-gray-600";
+  tdEmail.textContent = user.email;
+
+  const tdRole = document.createElement("td");
+  tdRole.className = "px-6 py-4";
+
+  const roleSpan = document.createElement("span");
+  roleSpan.textContent = user.role;
+  roleSpan.className =
+    user.role === "admin"
+      ? "bg-sky-500 text-white text-sm px-3 py-1 rounded-lg font-semibold"
+      : "bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-lg font-semibold";
+
+  tdRole.appendChild(roleSpan);
+
+  const tdActions = document.createElement("td");
+  tdActions.className = "px-6 py-4";
+
+  const actionsDiv = document.createElement("div");
+  actionsDiv.className = "flex justify-end gap-3";
+
+  const editBtn = document.createElement("button");
+  editBtn.className = "hover:bg-sky-200 p-1 rounded-lg";
+  editBtn.addEventListener("click", () => toggleRole(user));
+  const editIcon = document.createElement("i");
+  editIcon.setAttribute("data-lucide", "pencil");
+  editIcon.className = "size-5";
+  editBtn.appendChild(editIcon);
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "hover:bg-sky-200 p-1 rounded-lg";
+  deleteBtn.addEventListener("click", () => deleteUser(user));
+  const deleteIcon = document.createElement("i");
+  deleteIcon.setAttribute("data-lucide", "trash-2");
+  deleteIcon.className = "size-5 text-red-500";
+  deleteBtn.appendChild(deleteIcon);
+
+  actionsDiv.append(editBtn, deleteBtn);
+  tdActions.appendChild(actionsDiv);
+
+  tr.append(tdName, tdEmail, tdRole, tdActions);
+  usersTbody.appendChild(tr);
+  lucide.createIcons();
+}
+
+getUsers();
+
+async function deleteUser(user) {
+  if (!confirm(`Delete ${user.name}?`)) return;
+  try {
+    const res = await fetch(`/api/users/${user._id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    if (res.ok) window.location.reload();
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+async function toggleRole(user) {
+  const newRole = user.role === "admin" ? "user" : "admin";
+  if (!confirm(`Change ${user.name}'s role to ${newRole}?`)) return;
+  try {
+    const res = await fetch(`/api/users/${user._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ role: newRole }),
+    });
+    if (res.ok) window.location.reload();
+  } catch (err) {
+    console.log(err.message);
+  }
+}

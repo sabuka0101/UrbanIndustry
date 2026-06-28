@@ -1,5 +1,6 @@
 import express from "express";
 import Product from "../Models/products.js";
+import { verifyAdmin } from "../Middlewares/tokenVerify.js";
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", verifyAdmin, async (req, res) => {
   try {
     const product = new Product(req.body);
     await product.save();
@@ -27,7 +28,7 @@ router.post("/", async (req, res) => {
     res.status(400).send(err.message);
   }
 });
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", verifyAdmin, async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body);
     res.json(product);
@@ -35,7 +36,7 @@ router.patch("/:id", async (req, res) => {
     console.log(err.message);
   }
 });
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyAdmin, async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
     res.json(product);

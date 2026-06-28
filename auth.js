@@ -64,9 +64,9 @@ async function loginUser() {
     const data = await res.json();
 
     if (res.status === 401) {
-      if (data.message === "Email is incorrect")
+      if (data.emailNotFound)
         return setError(loginEmailError, loginEmail, data.message);
-      if (data.message === "Password is incorrect")
+      if (data.passwordIncorrect)
         return setError(loginPasswordError, loginPassword, data.message);
     }
 
@@ -141,7 +141,7 @@ async function registerUser() {
 
     const data = await res.json();
 
-    if (res.status === 400 && data.message === "Email already exists")
+    if (data.emailExists)
       return setError(registerEmailError, registerEmail, data.message);
 
     if (!res.ok)

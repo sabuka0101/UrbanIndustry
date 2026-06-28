@@ -14,7 +14,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <title>Document</title>
+    <title>Admin Products</title>
   </head>
   <body>
     <header
@@ -60,7 +60,7 @@
         <h1 class="text-gray-800 text-4xl font-spaceGrotesk font-semibold">
           Admin Panel
         </h1>
-        <p class="text-xl text-gray-600">Manage your product catalog</p>
+        <p class="text-xl text-gray-600">Manage your store</p>
       </div>
       <button
         class="bg-gradient-to-r from-sky-500 to-sky-300 pl-6 pr-6 rounded-xl text-white font-semibold h-10 mt-4"
@@ -69,8 +69,26 @@
         + New Product
       </button>
     </div>
+
+    <div class="pl-8 pr-8 mt-6 flex gap-3">
+      <button
+        id="productsTabBtn"
+        class="px-5 py-2 rounded-lg font-semibold bg-sky-500 text-white"
+      >
+        Products
+      </button>
+      <button
+        id="usersTabBtn"
+        class="px-5 py-2 rounded-lg font-semibold text-gray-600 hover:bg-gray-100"
+      >
+        Users
+      </button>
+    </div>
+
+    <!-- Products Table -->
     <div
-      class="border border-gray-200 mt-8 ml-8 mr-8 rounded-xl overflow-hidden"
+      id="productsTable"
+      class="border border-gray-200 mt-4 ml-8 mr-8 rounded-xl overflow-hidden"
     >
       <table class="w-full">
         <thead class="bg-gray-100 border-b border-gray-200">
@@ -90,6 +108,32 @@
           </tr>
         </thead>
         <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Users Table -->
+    <div
+      id="usersTable"
+      class="hidden border border-gray-200 mt-4 ml-8 mr-8 rounded-xl overflow-hidden"
+    >
+      <table class="w-full">
+        <thead class="bg-gray-100 border-b border-gray-200">
+          <tr>
+            <th class="text-left font-semibold text-gray-800 px-6 py-4">
+              Name
+            </th>
+            <th class="text-left font-semibold text-gray-800 px-6 py-4">
+              Email
+            </th>
+            <th class="text-left font-semibold text-gray-800 px-6 py-4">
+              Role
+            </th>
+            <th class="text-right font-semibold text-gray-800 px-6 py-4">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody id="usersTbody"></tbody>
       </table>
     </div>
     <div
