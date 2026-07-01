@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const mongoURL = "mongodb://127.0.0.1:27017/UrbanIndustry";
+const mongoURL =
+  "mongodb+srv://Vercel-Admin-urbanindustry:64GIAfyUTMbRqFsz@urbanindustry.m1ywqtu.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose
   .connect(mongoURL)
