@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "server.js": {
+      "includeFiles": "{output.css,*.html,style.css}"
+    }
+  }
+}
